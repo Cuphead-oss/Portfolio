@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'LogIn/login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    $(document).ready(function() {
+    $("#invalid_cred")
+        .fadeIn(1000)
+        .delay(2000)
+        .fadeOut(2000);
+}); 
+    </script>
+
+    
+    <h1 align="center"><i>Code</i></h1>
+    <form id="user-form" align="center" action="" method="post">
+        {% csrf_token %}
+
+        <p id="invalid_cred">{{ form.non_field_errors }}</p>
+
+        <label for="name" id="label-name">Code:</label>
+        {{form.code}}
+        {{form.code.errors}}
+        
+        {% if Resend_button %}
+           <p >The code has Been expired</p>
+           <a href="{% url 'Resend' %}" class="resend-btn">Resend</a>
+        {% else %}
+        <input type="submit" id="submit-button" value="Done" />
+        {% endif %}
+    </form>
+
+</body>
+</html>

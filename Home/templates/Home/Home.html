@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block head %}
+    <link rel="stylesheet" href="{% static 'Home/Home.css' %}">
+    
+{% endblock %}
+
+{% block tarea_ %}Home{% endblock %}
+
+{% block content %}
+
+<div class="card-container"> 
+ {% for key,value in Index.items %}
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h1 class="card-title">{{ key }}</h1>
+    
+    {% if '+' in value.per %}
+    <h2 class="card-subtitle mb-2 text-muted" style="color: green;"> {{ value.Price }}</h2>
+    <p class="card-text" style="color: green;"> &#9650; {{ value.per }}</p>
+    {% else %}
+    <h2 class="card-subtitle mb-2 text-muted" style="color: rgb(173, 3, 3);">{{ value.Price }}</h2>
+    <p class="card-text" style="color: rgb(173, 3, 3);">&#9660; {{ value.per }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+</div>
+ <form class="search-box" action="{% url 'Search' %}" method="GET">
+    <label for="fname"  >Search:</label>
+    <input type="text" id="fname" name="fname" placeholder="Type here...">
+    <button type="submit">🔍</button>
+  </form>
+
+<div class="ncard-container">
+    {% for item in Newse %}
+      <div class="ncard-card">
+          <h2 class="ncard-title">{{item.0}}</h2>
+          <h4><a href="{{item.1}}">Click Here</a></h4>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

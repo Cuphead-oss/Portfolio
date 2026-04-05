@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'Home/search.css' %}">
+  <title>{{Name}}</title>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-left">{{Name}}</div>
+    <div class="navbar-right">
+      <a href="{% url 'Home' %}" class="nav-btn">Home</a>
+      <a href="{% url 'basket_main' %}" class="nav-btn">MyBasket</a>
+      {% if not flag %}
+      <a href="{% url 'Login' %}" class="nav-btn">Login</a>
+      {% else %}
+      <a href="{% url 'LogOut' %}" class="nav-btn">Logout</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!--New Flex Layout with Left & Right Columns -->
+  <div class="layout-container">
+    
+    <!-- LEFT COLUMN -->
+    <div class="left-column">
+      {% for value in Value %}
+      <div class="card">
+        <p><strong>{{ value.0 }}</strong>: {{ value.1 }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-column">
+      <div class="card">
+        <p><strong>{{ About }}</strong></p>
+      </div>
+    </div>
+   </div> 
+<!-- Smaller Chart Container -->
+<div style="max-width: 600px; margin: 20px auto;">
+  <canvas id="stockChart" width="650" height="300"></canvas>
+</div>
+
+<!-- Chart Script :) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const symbol = "{{ Symbol }}";  // passed from Django view
+    fetch(`/His_data/?symbol=${symbol}`)
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: symbol + ' Close Price',
+                        data: data.prices,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            ticks: { maxTicksLimit: 6 },
+                            grid: { display: false }
+                        },
+                        y: {
+                            grid: { color: '#eee' },
+                            ticks: {
+                                callback: value => '₹' + value
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { font: { size: 14 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => `₹${ctx.raw.toFixed(2)}`
+                            }
+                        }
+                    }
+                }
+            });
+        });
+</script>
+{% if flag %}
+<p>Button</p>
+{% endif %}
+</body>
+</html>

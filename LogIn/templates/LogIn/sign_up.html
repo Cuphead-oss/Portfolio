@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Login/signup.css' %}" />
+    <title>Sign Up</title>
+</head>
+<body>
+    <a href="{% url 'Login' %}" class="top-right-button">LOGIN</a>
+    <font color="blue" align="center">
+        <h1><i>SIGN-UP</i></h1>
+    </font>
+
+    <form id="user-form" align="center" action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+        
+        {{ form.name.errors }}
+        <label for="" id="label-name">Name:</label>
+        {{form.name}}
+         
+        <label for="Email" id="label-pass">Email:</label>
+        {{form.email}}
+        
+        <label for="Password" id="label-pass">Password:</label>
+        {{form.password}}
+        {{ form.password.errors }}
+        
+        <label for="Password" id="label-pass">Re-enter Password:</label>
+        {{form.rePassword}}
+        {{ form.rePassword.errors }}
+
+        <input type="submit" id="submit-button" value="Done" />
+    </form>
+
+    <font color="red">
+        <p id="note-text" align="center"><b>{{ Note }}</b></p>
+    </font>
+   
+</body>
+</html>

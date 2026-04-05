@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'LogIn/login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    $(document).ready(function() {
+    $("#invalid_cred")
+        .fadeIn(1000)
+        .delay(2000)
+        .fadeOut(2000);
+}); 
+    </script>
+
+    <a href="{% url 'signup' %}" class="top-left-button">SIGN-UP</a>
+    <h1 align="center"><i>Login</i></h1>
+    <form id="user-form" align="center" action="" method="post">
+        {% csrf_token %}
+
+        <p id="invalid_cred">{{ form.non_field_errors }}</p>
+
+        <label for="name" id="label-name">Username/Email:</label>
+        {{form.user_email}}
+        <label for="name" id="label-pass">Password:</label>
+        {{form.password}}
+        {{ form.password.errors }}
+
+        <input type="submit" id="submit-button" value="Done" />
+    </form>
+</body>
+</html>

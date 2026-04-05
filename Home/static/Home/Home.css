@@ -1,0 +1,152 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.navbar-left {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  color: white;
+  text-decoration: none;
+  background-color: #333;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #555;
+}
+
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+ .search-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .search-box label {
+      font-size: 20px;
+      margin-right: 10px;
+      color: #333;
+    }
+
+    .search-box input[type="text"] {
+      padding: 10px 15px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .search-box button:hover {
+      background: #45a049;
+    }
+
+    .ncard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.ncard-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.ncard-card:hover {
+  transform: translateY(-4px);
+}
+
+.ncard-title {
+  font-size: 1.1em;
+  color: #1a202c;
+  margin-bottom: 10px;
+}
+
+.ncard-link {
+  text-decoration: none;
+  color: #1e88e5;
+  font-weight: bold;
+}
+
+.ncard-link:hover {
+  text-decoration: underline;
+}
+
+.ncard-date {
+  margin-top: 12px;
+  font-size: 0.85em;
+  color: #6b7280;
+}

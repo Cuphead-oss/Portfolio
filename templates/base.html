@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+    <div class="navbar-left">{% block tarea_ %}{% endblock %}</div>
+    <div class="navbar-right">
+      <a href="{% url 'Home' %}" class="nav-btn">Home</a>
+      <a href="{% url 'basket_main' %}" class="nav-btn">MyBasket</a>
+      {% if not Flag %}
+      <a href="{% url 'Login' %}" class="nav-btn">Login</a>
+      {% else %}
+       <a href="{% url 'LogOut' %}" class="nav-btn">Logout</a>
+      {% endif %}
+    </div>
+  </nav>
+
+
+{% block content %}{% endblock %}
+
+</body>
+</html>
